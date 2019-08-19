@@ -1,11 +1,16 @@
 
 
+const customToLowerCase = require('../../hooks/custom-to-lower-case');
+const asyncHook = require('../../hooks/async-hook');
+const afterHookModifyResponse = require('../../hooks/after-hook-modify-response');
+const testingErrorHook = require('../../hooks/testing-error-hook');
+
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [customToLowerCase('toyName', 'toyColor'), asyncHook()],
     update: [],
     patch: [],
     remove: []
@@ -15,7 +20,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [afterHookModifyResponse()],
     update: [],
     patch: [],
     remove: []
@@ -25,7 +30,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [testingErrorHook()],
     update: [],
     patch: [],
     remove: []
